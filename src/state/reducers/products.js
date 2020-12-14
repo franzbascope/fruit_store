@@ -12,26 +12,41 @@ export const ProductsReducer = (state = initialStateProducts, action) => {
       return {
         ...state,
         products: addProductQuantity(action.name, state.products),
+        actions: state.actions.concat(
+          addAction(ProductTypes.ADD_PRODUCT_QUANTITY, action.name)
+        ),
       };
     case ProductTypes.ADD_PRODUCT_CART:
-      debugger;
       return {
         ...state,
         products: addProductCart(action.name, state.products),
+        actions: state.actions.concat(
+          addAction(ProductTypes.ADD_PRODUCT_CART, action.name)
+        ),
       };
     case ProductTypes.REMOVE_PRODUCT_CART:
       return {
         ...state,
         products: removeProductCart(action.name, state.products),
+        actions: state.actions.concat(
+          addAction(ProductTypes.REMOVE_PRODUCT_CART, action.name)
+        ),
       };
     case ProductTypes.DECREASE_PRODUCT_QUANTITY:
       return {
         ...state,
         products: decreaseProductQuantity(action.name, state.products),
+        actions: state.actions.concat(
+          addAction(ProductTypes.DECREASE_PRODUCT_QUANTITY, action.name)
+        ),
       };
     default:
       return state;
   }
+};
+
+const addAction = (type, product) => {
+  return { type, product };
 };
 
 const addProductCart = (name, product_list) => {

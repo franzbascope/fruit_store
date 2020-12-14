@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Product from "./components/products";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -12,7 +12,7 @@ import Quantity from "./components/quantity";
 import { Button } from "react-bootstrap";
 export default () => {
   const products = useSelector((state) => state.products);
-  const total = useSelector((state) => state.total);
+  const actions = useSelector((state) => state.actions);
   const dispatch = useDispatch();
 
   const calculateTotal = (products) => {
