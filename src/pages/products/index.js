@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Modal } from "react-bootstrap";
 import Product from "./components/products";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -15,6 +16,8 @@ export default () => {
   const actions = useSelector((state) => state.actions);
   const dispatch = useDispatch();
 
+  const [show, setShow] = useState(false);
+
   const calculateTotal = (products) => {
     let total = 0;
     for (let product of products) {
@@ -24,8 +27,36 @@ export default () => {
     }
     return total;
   };
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <React.Fragment>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Actions Done</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ol>
+            {actions.map((action, index) => {
+              return (
+                <p>
+                  Se realizo la accion: <strong>{action.type}</strong>
+                  en el producto: <strong>{action.product}</strong>
+                </p>
+              );
+            })}
+          </ol>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <h1 class="display-4">Buy a fruit</h1>
         <p class="lead">Here we got the best fruits.</p>
@@ -74,7 +105,7 @@ export default () => {
               {calculateTotal(products).toFixed(2)}
             </span>
           </div>
-          <Button variant="primary" size="lg" block>
+          <Button variant="primary" size="lg" block onClick={handleShow}>
             Checkout
           </Button>
         </React.Fragment>
