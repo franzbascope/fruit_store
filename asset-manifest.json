@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/fruit_store/static/css/main.0a3df95f.chunk.css",
+    "main.js": "/fruit_store/static/js/main.7f1528b3.chunk.js",
+    "main.js.map": "/fruit_store/static/js/main.7f1528b3.chunk.js.map",
+    "runtime-main.js": "/fruit_store/static/js/runtime-main.2843bb76.js",
+    "runtime-main.js.map": "/fruit_store/static/js/runtime-main.2843bb76.js.map",
+    "static/css/2.95f25948.chunk.css": "/fruit_store/static/css/2.95f25948.chunk.css",
+    "static/js/2.190e2568.chunk.js": "/fruit_store/static/js/2.190e2568.chunk.js",
+    "static/js/2.190e2568.chunk.js.map": "/fruit_store/static/js/2.190e2568.chunk.js.map",
+    "index.html": "/fruit_store/index.html",
+    "static/css/2.95f25948.chunk.css.map": "/fruit_store/static/css/2.95f25948.chunk.css.map",
+    "static/css/main.0a3df95f.chunk.css.map": "/fruit_store/static/css/main.0a3df95f.chunk.css.map",
+    "static/js/2.190e2568.chunk.js.LICENSE.txt": "/fruit_store/static/js/2.190e2568.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2843bb76.js",
+    "static/css/2.95f25948.chunk.css",
+    "static/js/2.190e2568.chunk.js",
+    "static/css/main.0a3df95f.chunk.css",
+    "static/js/main.7f1528b3.chunk.js"
+  ]
+}
