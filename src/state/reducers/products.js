@@ -1,4 +1,4 @@
-import { ProductTypes } from "../types/productTypes";
+import { ProductTypes } from "../types/products";
 
 const initialStateProducts = {
   products: [],
@@ -6,37 +6,34 @@ const initialStateProducts = {
   error: "",
 };
 
-export const mainReducer = (state = initialStateProducts, action) => {
+export const ProductsReducer = (state = initialStateProducts, action) => {
   switch (action.type) {
     case ProductTypes.ADD_PRODUCT_QUANTITY:
       return {
         ...state,
-        products: this.addProductQuantity(action.product_id, state.products),
+        products: addProductQuantity(action.product_id, state.products),
       };
     case ProductTypes.ADD_PRODUCT_CART:
       return {
         ...state,
-        products: this.addProductCart(action.product_id, state.products),
+        products: addProductCart(action.product_id, state.products),
       };
     case ProductTypes.REMOVE_PRODUCT_CART:
       return {
         ...state,
-        products: this.removeProductCart(action.product_id, state.products),
+        products: removeProductCart(action.product_id, state.products),
       };
     case ProductTypes.DECREASE_PRODUCT_QUANTITY:
       return {
         ...state,
-        products: this.decreaseProductQuantity(
-          action.product_id,
-          state.products
-        ),
+        products: decreaseProductQuantity(action.product_id, state.products),
       };
     default:
       return state;
   }
 };
 
-addProductCart = (product_id, product_list) => {
+const addProductCart = (product_id, product_list) => {
   return product_list.map((product) => {
     if (product.id === product_id) {
       return {
@@ -48,7 +45,7 @@ addProductCart = (product_id, product_list) => {
     } else return product;
   });
 };
-removeProductCart = (product_id, product_list) => {
+const removeProductCart = (product_id, product_list) => {
   return product_list.map((product) => {
     if (product.id === product_id) {
       return {
@@ -60,7 +57,7 @@ removeProductCart = (product_id, product_list) => {
     } else return product;
   });
 };
-addProductQuantity = (product_id, product_list) => {
+const addProductQuantity = (product_id, product_list) => {
   return product_list.map((product) => {
     if (product.id === product_id) {
       let quantity = product.quantity + 1;
@@ -72,7 +69,7 @@ addProductQuantity = (product_id, product_list) => {
     } else return product;
   });
 };
-decreaseProductQuantity = (product_id, product_list) => {
+const decreaseProductQuantity = (product_id, product_list) => {
   return product_list.map((product) => {
     if (product.id === product_id) {
       let quantity = product.quantity - 1 < 1 ? 1 : product.quantity - 1;
