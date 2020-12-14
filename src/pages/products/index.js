@@ -26,6 +26,9 @@ export default () => {
               addToCart={(name) => {
                 dispatch(addProductCart(name));
               }}
+              removeFromCart={(name) => {
+                dispatch(removeProductCart(name));
+              }}
               key={index}
               id={index}
               name={name}

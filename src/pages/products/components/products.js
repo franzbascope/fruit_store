@@ -21,16 +21,27 @@ export default (props) => {
               return <li>{feature}</li>;
             })}
           </ul>
-          <button
-            onClick={() => {
-              addToCart(props.name);
-            }}
-            type="button"
-            class="w-100 btn btn-lg btn-outline-primary"
-          >
-            Add to Cart
-          </button>
-          <h1>{cart ? "Cart" : "sin agregar"}</h1>
+          {cart ? (
+            <button
+              onClick={() => {
+                removeFromCart(props.name);
+              }}
+              type="button"
+              className="w-100 btn btn-lg btn-outline-danger"
+            >
+              Remove
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                addToCart(props.name);
+              }}
+              type="button"
+              class="w-100 btn btn-lg btn-outline-primary"
+            >
+              Add to Cart
+            </button>
+          )}
         </div>
       </div>
     </div>
