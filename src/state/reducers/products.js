@@ -1,9 +1,9 @@
 import { ProductTypes } from "../types/products";
+import { products } from "./mocks/products";
 
 const initialStateProducts = {
-  products: [],
-  loading: false,
-  error: "",
+  products: products,
+  actions: [],
 };
 
 export const ProductsReducer = (state = initialStateProducts, action) => {
@@ -11,43 +11,43 @@ export const ProductsReducer = (state = initialStateProducts, action) => {
     case ProductTypes.ADD_PRODUCT_QUANTITY:
       return {
         ...state,
-        products: addProductQuantity(action.product_id, state.products),
+        products: addProductQuantity(action.name, state.products),
       };
     case ProductTypes.ADD_PRODUCT_CART:
       return {
         ...state,
-        products: addProductCart(action.product_id, state.products),
+        products: addProductCart(action.name, state.products),
       };
     case ProductTypes.REMOVE_PRODUCT_CART:
       return {
         ...state,
-        products: removeProductCart(action.product_id, state.products),
+        products: removeProductCart(action.name, state.products),
       };
     case ProductTypes.DECREASE_PRODUCT_QUANTITY:
       return {
         ...state,
-        products: decreaseProductQuantity(action.product_id, state.products),
+        products: decreaseProductQuantity(action.name, state.products),
       };
     default:
       return state;
   }
 };
 
-const addProductCart = (product_id, product_list) => {
+const addProductCart = (name, product_list) => {
   return product_list.map((product) => {
-    if (product.id === product_id) {
+    if (product.name === name) {
       return {
         ...product,
         cart: true,
         quantity: 1,
-        subtotal: parseInt(product.precio),
+        subtotal: parseInt(product.price),
       };
     } else return product;
   });
 };
-const removeProductCart = (product_id, product_list) => {
+const removeProductCart = (name, product_list) => {
   return product_list.map((product) => {
-    if (product.id === product_id) {
+    if (product.name === name) {
       return {
         ...product,
         cart: false,
@@ -57,26 +57,26 @@ const removeProductCart = (product_id, product_list) => {
     } else return product;
   });
 };
-const addProductQuantity = (product_id, product_list) => {
+const addProductQuantity = (name, product_list) => {
   return product_list.map((product) => {
-    if (product.id === product_id) {
+    if (product.name === name) {
       let quantity = product.quantity + 1;
       return {
         ...product,
         quantity: quantity,
-        subtotal: quantity * product.precio,
+        subtotal: quantity * product.price,
       };
     } else return product;
   });
 };
-const decreaseProductQuantity = (product_id, product_list) => {
+const decreaseProductQuantity = (name, product_list) => {
   return product_list.map((product) => {
-    if (product.id === product_id) {
+    if (product.name === name) {
       let quantity = product.quantity - 1 < 1 ? 1 : product.quantity - 1;
       return {
         ...product,
         quantity: quantity,
-        subtotal: quantity * product.precio,
+        subtotal: quantity * product.price,
       };
     } else return product;
   });

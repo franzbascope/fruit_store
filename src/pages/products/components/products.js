@@ -1,4 +1,8 @@
-export default ({ name, price, features, image }) => {
+export default (props) => {
+  // attributes
+  const { name, price, features, image, cart } = props;
+  // actions
+  const { addToCart, removeFromCart, addQuantity, decreaseQuantity } = props;
   return (
     <div class="col">
       <div class="card mb-4 shadow-sm">
@@ -17,9 +21,16 @@ export default ({ name, price, features, image }) => {
               return <li>{feature}</li>;
             })}
           </ul>
-          <button type="button" class="w-100 btn btn-lg btn-outline-primary">
+          <button
+            onClick={() => {
+              addToCart(props.name);
+            }}
+            type="button"
+            class="w-100 btn btn-lg btn-outline-primary"
+          >
             Add to Cart
           </button>
+          <h1>{cart ? "Cart" : "sin agregar"}</h1>
         </div>
       </div>
     </div>
