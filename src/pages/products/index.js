@@ -40,10 +40,12 @@ export default () => {
           <ol>
             {actions.map((action, index) => {
               return (
-                <p>
-                  Se realizo la accion: <strong>{action.type}</strong>
-                  en el producto: <strong>{action.product}</strong>
-                </p>
+                <li>
+                  <p>
+                    Se realizo la accion: <strong>{action.type}</strong>
+                    en el producto: <strong>{action.product}</strong>
+                  </p>
+                </li>
               );
             })}
           </ol>
