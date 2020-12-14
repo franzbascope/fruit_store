@@ -1,3 +1,4 @@
+import React from "react";
 export default (props) => {
   // attributes
   const { name, price, features, image, cart } = props;
@@ -22,15 +23,18 @@ export default (props) => {
             })}
           </ul>
           {cart ? (
-            <button
-              onClick={() => {
-                removeFromCart(props.name);
-              }}
-              type="button"
-              className="w-100 btn btn-lg btn-outline-danger"
-            >
-              Remove
-            </button>
+            <React.Fragment>
+              {props.children}
+              <button
+                onClick={() => {
+                  removeFromCart(props.name);
+                }}
+                type="button"
+                className="w-100 btn btn-lg btn-outline-danger"
+              >
+                Remove
+              </button>
+            </React.Fragment>
           ) : (
             <button
               onClick={() => {

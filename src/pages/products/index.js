@@ -8,6 +8,7 @@ import {
   addProductCart,
   removeProductCart,
 } from "../../state/actions/products";
+import Quantity from "./components/quantity";
 export default () => {
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
@@ -36,7 +37,17 @@ export default () => {
               features={features}
               image={image}
               cart={cart}
-            />
+            >
+              <Quantity
+                quantity={product.quantity ? product.quantity : 1}
+                add={() => {
+                  dispatch(addProductQuantity(name));
+                }}
+                decrease={() => {
+                  dispatch(decreaseProductQuantity(name));
+                }}
+              />
+            </Product>
           );
         })}
       </div>
