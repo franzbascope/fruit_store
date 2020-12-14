@@ -14,6 +14,7 @@ export const ProductsReducer = (state = initialStateProducts, action) => {
         products: addProductQuantity(action.name, state.products),
       };
     case ProductTypes.ADD_PRODUCT_CART:
+      debugger;
       return {
         ...state,
         products: addProductCart(action.name, state.products),

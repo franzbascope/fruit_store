@@ -9,9 +9,21 @@ import {
   removeProductCart,
 } from "../../state/actions/products";
 import Quantity from "./components/quantity";
+import { Button } from "react-bootstrap";
 export default () => {
   const products = useSelector((state) => state.products);
+  const total = useSelector((state) => state.total);
   const dispatch = useDispatch();
+
+  const calculateTotal = (products) => {
+    let total = 0;
+    for (let product of products) {
+      if (product.subtotal) {
+        total += product.subtotal;
+      }
+    }
+    return total;
+  };
   return (
     <React.Fragment>
       <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
@@ -51,6 +63,23 @@ export default () => {
           );
         })}
       </div>
+      {calculateTotal(products) > 0 ? (
+        <React.Fragment>
+          <div className="mt-3 mb-3">
+            <strong className="size-lg" style={{ fontSize: 20 }}>
+              Total:
+            </strong>
+            <span className="ml-3" style={{ fontSize: 20 }}>
+              {calculateTotal(products)}
+            </span>
+          </div>
+          <Button variant="primary" size="lg" block>
+            Checkout
+          </Button>
+        </React.Fragment>
+      ) : (
+        ""
+      )}
     </React.Fragment>
   );
 };
