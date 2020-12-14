@@ -1,4 +1,5 @@
 import React from "react";
+import products from "..";
 export default (props) => {
   // attributes
   const { name, price, features, image, cart } = props;
@@ -24,6 +25,14 @@ export default (props) => {
           </ul>
           {cart ? (
             <React.Fragment>
+              <div className="mt-3 mb-3" style={{ textAlign: "left" }}>
+                <strong className="size-lg" style={{ fontSize: 16 }}>
+                  Subtotal:
+                </strong>
+                <span className="ml-3" style={{ fontSize: 16 }}>
+                  {props.subtotal.toFixed(2)}
+                </span>
+              </div>
               {props.children}
               <button
                 onClick={() => {

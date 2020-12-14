@@ -49,6 +49,7 @@ export default () => {
               features={features}
               image={image}
               cart={cart}
+              subtotal={product.subtotal ? product.subtotal : 0}
             >
               <Quantity
                 quantity={product.quantity ? product.quantity : 1}
@@ -70,7 +71,7 @@ export default () => {
               Total:
             </strong>
             <span className="ml-3" style={{ fontSize: 20 }}>
-              {calculateTotal(products)}
+              {calculateTotal(products).toFixed(2)}
             </span>
           </div>
           <Button variant="primary" size="lg" block>
